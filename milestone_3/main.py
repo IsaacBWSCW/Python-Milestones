@@ -1,4 +1,5 @@
-def ask_question(question: str, answers: list[str]) -> bool:
+def ask_question(i: int, question: str, answers: list[str]) -> bool:
+    print(f"Question {i+1}:")
     print(question)
 
     answer: str = input("Answer: ")
@@ -8,6 +9,12 @@ def ask_question(question: str, answers: list[str]) -> bool:
     return False
 
 def main() -> None:
+    print("Hello!, This quiz will test your beginner knowledge in python.")
+    print("REMINDER: Any information you input into this program will not be saved, stored or transmitted anywhere!")
+
+    name = input("Please input your name: ")
+    print(f"Hello {name}! We'll begin now.\n")
+
     correct_answers: int = 0
     incorrect_answers: int = 0
 
@@ -17,16 +24,17 @@ def main() -> None:
         ("What function is used to format a string?", ["format", ".format", "format()", ".format()"], "Yes, that is correct.", "Sorry, that's incorrect. The answer is format.")
     ]
 
-    for question in questions:
-        if ask_question(question[0], question[1]):
+    for i in range(len(questions)):
+        question = questions[i]
+        if ask_question(i, question[0], question[1]):
             print(question[2])
             correct_answers += 1
         else:
             print(question[3])
             incorrect_answers += 1
 
-    print(f"Correct answers: {correct_answers}.")
-    print(f"Incorrect answers: {incorrect_answers}.")
+    print(f"Alright {name}, we've finished the questions.")
+    print(f"You got {correct_answers} correct and {incorrect_answers} incorrect.")
     print(f"Your score is {float(correct_answers) / float(len(questions)) * 100}%.")
 
 if __name__ == "__main__":
